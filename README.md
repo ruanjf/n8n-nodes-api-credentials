@@ -12,6 +12,10 @@
 
 [文档](https://developer.work.weixin.qq.com/document/path/90664)
 
+### 语雀
+
+[文档](https://www.yuque.com/yuque/developer/api)
+
 ## 本地安装
 
 1. 启动n8n`npx n8n`

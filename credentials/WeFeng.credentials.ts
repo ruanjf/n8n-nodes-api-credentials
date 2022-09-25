@@ -9,7 +9,7 @@ import crypto from 'crypto';
 export class WeFeng implements ICredentialType {
 	name = 'wefeng';
 	displayName = '微丰 API';
-	documentationUrl = '';
+	documentationUrl = 'https://developer.wefeng360.com/docs/';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API版本',

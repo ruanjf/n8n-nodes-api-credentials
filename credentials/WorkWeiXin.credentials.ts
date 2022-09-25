@@ -9,7 +9,7 @@ import {
 export class WorkWeiXin implements ICredentialType {
 	name = 'workWeiXin';
 	displayName = '企业微信 API';
-	documentationUrl = '';
+	documentationUrl = 'https://developer.work.weixin.qq.com/document/path/90664';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Access Token',
