@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-api-credentials",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "keywords": [
     "n8n-community-node-package",
@@ -33,9 +33,9 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/WeFeng.credentials.js",
-      "dist/credentials/WorkWeiXin.credentials.js",
-      "dist/credentials/YuQue.credentials.js"
+      "dist/credentials/WeFengApi.credentials.js",
+      "dist/credentials/WorkWeiXinApi.credentials.js",
+      "dist/credentials/YuQueApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/DoNotUseThis/DoNotUseThis.node.js"

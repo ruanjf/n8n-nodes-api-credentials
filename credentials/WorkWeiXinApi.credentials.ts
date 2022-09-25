@@ -1,19 +1,39 @@
 import {
 	IAuthenticateGeneric,
 	ICredentialDataDecryptedObject,
+	ICredentialTestRequest,
 	ICredentialType,
 	IHttpRequestHelper,
+	IHttpRequestOptions,
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class WorkWeiXin implements ICredentialType {
-	name = 'workWeiXin';
+export class WorkWeiXinApi implements ICredentialType {
+	name = 'workWeiXinApi';
 	displayName = '企业微信 API';
 	documentationUrl = 'https://developer.work.weixin.qq.com/document/path/90664';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Access Token',
 			name: 'accessToken',
+			type: 'hidden',
+			typeOptions: {
+				expirable: true,
+			},
+			default: '',
+		},
+		{
+			displayName: 'Expires At',
+			name: 'expiresAt',
+			type: 'hidden',
+			typeOptions: {
+				expirable: true,
+			},
+			default: '',
+		},
+		{
+			displayName: 'Expires In',
+			name: 'expiresIn',
 			type: 'hidden',
 			typeOptions: {
 				expirable: true,
@@ -50,14 +70,25 @@ export class WorkWeiXin implements ICredentialType {
 			method: 'GET',
 			url,
 		})) as any;
-		return { accessToken: res.access_token };
+		return {
+			accessToken: res.access_token,
+			expiresAt: new Date().getTime() + res.expires_in * 1000,
+			// 凭证的有效时间（秒）
+			expiresIn: res.expires_in,
+		};
 	}
-	authenticate: IAuthenticateGeneric = {
-		type: 'generic',
-		properties: {
-			qs: {
-				'access_token': '={{$credentials.accessToken}}',
-			},
-		},
-	};
+	async authenticate(
+		credentials: ICredentialDataDecryptedObject,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		if (!credentials.expiresAt || (credentials.expiresAt as number + 5000) <= new Date().getTime()) {
+			throw new Error("access_token expired")
+		}
+		if (!requestOptions.qs) {
+			requestOptions.qs = {}
+		}
+		Object.assign(requestOptions.qs, { 'access_token': credentials.accessToken });
+
+		return requestOptions;
+	}
 }

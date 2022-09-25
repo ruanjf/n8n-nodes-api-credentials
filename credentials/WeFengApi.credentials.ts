@@ -6,8 +6,8 @@ import {
 } from 'n8n-workflow';
 import crypto from 'crypto';
 
-export class WeFeng implements ICredentialType {
-	name = 'wefeng';
+export class WeFengApi implements ICredentialType {
+	name = 'weFengApi';
 	displayName = '微丰 API';
 	documentationUrl = 'https://developer.wefeng360.com/docs/';
 	properties: INodeProperties[] = [

@@ -5,8 +5,8 @@ import {
 } from 'n8n-workflow';
 import crypto from 'crypto';
 
-export class YuQue implements ICredentialType {
-	name = 'yuque';
+export class YuQueApi implements ICredentialType {
+	name = 'yuQueApi';
 	displayName = '语雀 API';
 	documentationUrl = 'https://www.yuque.com/yuque/developer/api';
 	properties: INodeProperties[] = [
