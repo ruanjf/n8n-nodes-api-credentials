@@ -1,5 +1,7 @@
 # n8n-nodes-api-credentials
 
+[![NPM badge](https://img.shields.io/npm/v/n8n-nodes-api-credentials.svg)](https://www.npmjs.com/package/n8n-nodes-api-credentials)
+
 提供各种API的鉴权设置
 
 ## 功能
